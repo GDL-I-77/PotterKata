@@ -64,5 +64,11 @@ namespace PotterKata.DataAccess.Tests.Storages
 
 			_storage.Books.ShouldAllBeEquivalentTo(expectedBooks, options => options.WithStrictOrdering());
 		}
+
+		[Test]
+		public void WishList_should_be_not_null_by_default()
+		{
+			_storage.WishList.Should().NotBeNull();
+		}
 	}
 }

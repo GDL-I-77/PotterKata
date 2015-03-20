@@ -41,9 +41,16 @@ namespace PotterKata.DataAccess.Storages
 			}
 		};
 
+		private readonly List<Book> _wishList = new List<Book>();
+
 		public List<Book> Books
 		{
 			get { return _books; }
+		}
+
+		public List<Book> WishList
+		{
+			get { return _wishList; }
 		}
 	}
 }

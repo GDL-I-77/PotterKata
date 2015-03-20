@@ -9,5 +9,10 @@ namespace PotterKata.DataAccess.Storages
 		/// Contains all available books
 		/// </summary>
 		List<Book> Books { get; }
+
+		/// <summary>
+		/// Contains books which are added to the Wish List
+		/// </summary>
+		List<Book> WishList { get; }
 	}
 }
