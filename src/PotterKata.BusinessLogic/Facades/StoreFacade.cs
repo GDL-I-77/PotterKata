@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using PotterKata.BusinessLogic.Calculation;
 using PotterKata.DataAccess.Repositories;
 using Book = PotterKata.BusinessLogic.Models.Book;
 
@@ -9,11 +10,13 @@ namespace PotterKata.BusinessLogic.Facades
 	{
 		private readonly IBooksRepository _booksRepository;
 		private readonly IWishListRepository _wishListRepository;
+		private readonly ITotalPriceCalculator _totalPriceCalculator;
 
-		public StoreFacade(IBooksRepository booksRepository, IWishListRepository wishListRepository)
+		public StoreFacade(IBooksRepository booksRepository, IWishListRepository wishListRepository, ITotalPriceCalculator totalPriceCalculator)
 		{
 			_booksRepository = booksRepository;
 			_wishListRepository = wishListRepository;
+			_totalPriceCalculator = totalPriceCalculator;
 		}
 
 		public IEnumerable<Book> GetBooks()
@@ -42,6 +45,12 @@ namespace PotterKata.BusinessLogic.Facades
 			}
 
 			return false;
+		}
+
+		public decimal CalculateTotalPrice()
+		{
+			var books = _wishListRepository.GetAll();
+			return _totalPriceCalculator.Calculate(books);
 		}
 	}
 }

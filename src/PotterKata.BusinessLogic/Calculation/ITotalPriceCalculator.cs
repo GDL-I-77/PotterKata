@@ -10,6 +10,6 @@ namespace PotterKata.BusinessLogic.Calculation
 		/// </summary>
 		/// <param name="books">Collection of books</param>
 		/// <returns>Total price</returns>
-		decimal Calculate(ICollection<Book> books);
+		decimal Calculate(IEnumerable<Book> books);
 	}
 }

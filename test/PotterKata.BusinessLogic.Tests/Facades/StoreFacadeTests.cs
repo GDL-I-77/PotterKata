@@ -4,6 +4,7 @@ using System.Linq;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
+using PotterKata.BusinessLogic.Calculation;
 using PotterKata.BusinessLogic.Facades;
 using PotterKata.DataAccess.Models;
 using PotterKata.DataAccess.Repositories;
@@ -16,13 +17,15 @@ namespace PotterKata.BusinessLogic.Tests.Facades
 		private StoreFacade _facade;
 		private Mock<IBooksRepository> _booksRepository;
 		private Mock<IWishListRepository> _wishListRepository;
+		private Mock<ITotalPriceCalculator> _calculator;
 
 		[SetUp]
 		public void SetUp()
 		{
 			_booksRepository = new Mock<IBooksRepository>();
 			_wishListRepository = new Mock<IWishListRepository>();
-			_facade = new StoreFacade(_booksRepository.Object, _wishListRepository.Object);
+			_calculator = new Mock<ITotalPriceCalculator>();
+			_facade = new StoreFacade(_booksRepository.Object, _wishListRepository.Object, _calculator.Object);
 		}
 
 		#region GetBooks
@@ -165,6 +168,30 @@ namespace PotterKata.BusinessLogic.Tests.Facades
 
 			//Assert
 			actual.Should().BeFalse();
+		}
+
+		#endregion
+
+		#region CalculateTotalPrice
+
+		[Test]
+		public void CalculateTotalPrice_should_use_all_books_from_wish_list_to_calculate_total_price()
+		{
+			//Arrange
+			const decimal expectedTotalPrice = 16;
+			var books = new List<Book>
+			{
+				new Book { Name = "1" },
+				new Book { Name = "2" }
+			};
+			_wishListRepository.Setup(w => w.GetAll()).Returns(books);
+			_calculator.Setup(c => c.Calculate(books)).Returns(16);
+
+			//Act
+			var actual = _facade.CalculateTotalPrice();
+
+			//Assert
+			actual.Should().Be(expectedTotalPrice);
 		}
 
 		#endregion

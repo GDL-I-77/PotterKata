@@ -6,20 +6,29 @@ namespace PotterKata.BusinessLogic.Calculation
 {
 	public class TotalPriceCalculator : ITotalPriceCalculator
 	{
-		public decimal Calculate(ICollection<Book> books)
+		public decimal Calculate(IEnumerable<Book> books)
 		{
-			if (books != null && books.Count > 0)
+			if (books != null)
 			{
-				int seriesCount = books.GroupBy(b => b.Name).Count();
+				var validBooks = GetValidBooks(books);
+				if (validBooks.Count > 0)
+				{
+					int seriesCount = validBooks.GroupBy(b => b.Name).Count();
 
-				decimal discountPercentage = GetDiscountPercentage(seriesCount);
-				if (discountPercentage > 0)
-					return CalculateTotalPrice(books) - CalculateDiscount(seriesCount, discountPercentage);
+					decimal discountPercentage = GetDiscountPercentage(seriesCount);
+					if (discountPercentage > 0)
+						return CalculateTotalPrice(validBooks) - CalculateDiscount(seriesCount, discountPercentage);
 
-				return CalculateTotalPrice(books);
+					return CalculateTotalPrice(validBooks);
+				}
 			}
 
 			return 0;
+		}
+
+		private static List<Book> GetValidBooks(IEnumerable<Book> books)
+		{
+			return books.Where(b => b != null).ToList();
 		}
 
 		private static int CalculateTotalPrice(ICollection<Book> books)

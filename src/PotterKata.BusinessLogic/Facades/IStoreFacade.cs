@@ -16,5 +16,11 @@ namespace PotterKata.BusinessLogic.Facades
 		/// </summary>
 		/// <returns>Results of the operation</returns>
 		bool AddBookToWishList(string bookKey);
+
+		/// <summary>
+		/// Calculate total books price from Wish List
+		/// </summary>
+		/// <returns>Total price</returns>
+		decimal CalculateTotalPrice();
 	}
 }
