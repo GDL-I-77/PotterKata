@@ -8,10 +8,12 @@ namespace PotterKata.BusinessLogic.Facades
 	public class StoreFacade : IStoreFacade
 	{
 		private readonly IBooksRepository _booksRepository;
+		private readonly IWishListRepository _wishListRepository;
 
-		public StoreFacade(IBooksRepository booksRepository)
+		public StoreFacade(IBooksRepository booksRepository, IWishListRepository wishListRepository)
 		{
 			_booksRepository = booksRepository;
+			_wishListRepository = wishListRepository;
 		}
 
 		public IEnumerable<Book> GetBooks()
@@ -25,6 +27,21 @@ namespace PotterKata.BusinessLogic.Facades
 			}
 
 			return Enumerable.Empty<Book>();
+		}
+
+		public bool AddBookToWishList(string name)
+		{
+			if (!string.IsNullOrEmpty(name))
+			{
+				var book = _booksRepository
+					.GetAll()
+					.FirstOrDefault(b => b != null && b.Name == name);
+
+				if (book != null)
+					return _wishListRepository.Add(book);
+			}
+
+			return false;
 		}
 	}
 }

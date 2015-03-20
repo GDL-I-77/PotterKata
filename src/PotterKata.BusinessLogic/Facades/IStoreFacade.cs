@@ -10,5 +10,11 @@ namespace PotterKata.BusinessLogic.Facades
 		/// </summary>
 		/// <returns>Collection of books</returns>
 		IEnumerable<Book> GetBooks();
+
+		/// <summary>
+		/// Add book to the Wish List
+		/// </summary>
+		/// <returns>Results of the operation</returns>
+		bool AddBookToWishList(string bookKey);
 	}
 }
