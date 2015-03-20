@@ -41,6 +41,9 @@
   <ItemGroup>
     <Compile Include="Calculation\ITotalPriceCalculator.cs" />
     <Compile Include="Calculation\TotalPriceCalculator.cs" />
+    <Compile Include="Facades\IStoreFacade.cs" />
+    <Compile Include="Facades\StoreFacade.cs" />
+    <Compile Include="Models\Book.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
