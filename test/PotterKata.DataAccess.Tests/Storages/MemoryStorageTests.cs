@@ -26,6 +26,7 @@ namespace PotterKata.DataAccess.Tests.Storages
 		[Test]
 		public void Books_should_contain_8_default_Harry_Potter_books_in_strict_order()
 		{
+			//Arrange
 			var expectedBooks = new List<Book>
 			{
 				new Book
@@ -62,6 +63,7 @@ namespace PotterKata.DataAccess.Tests.Storages
 				}
 			};
 
+			//Act
 			_storage.Books.ShouldAllBeEquivalentTo(expectedBooks, options => options.WithStrictOrdering());
 		}
 
