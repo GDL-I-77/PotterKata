@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using PotterKata.DataAccess.Constants;
 using PotterKata.DataAccess.Models;
 
 namespace PotterKata.DataAccess.Storages
@@ -9,35 +10,35 @@ namespace PotterKata.DataAccess.Storages
 		{
 			new Book
 			{
-				Name = "Harry Potter and the Philosopher's Stone",
+				Name = BookNames.ThePhilosophersStone
 			},
 			new Book
 			{
-				Name = "Harry Potter and the Chamber of Secrets",
+				Name = BookNames.TheChamberOfSecrets
 			},
 			new Book
 			{
-				Name = "Harry Potter and the Prisoner of Azkaban",
+				Name = BookNames.ThePrisonerOfAzkaban
 			},
 			new Book
 			{
-				Name = "Harry Potter and the Goblet of Fire",
+				Name = BookNames.TheGobletOfFire
 			},
 			new Book
 			{
-				Name = "Harry Potter and the Order of the Phoenix",
+				Name = BookNames.TheOrderOfThePhoenix
 			},
 			new Book
 			{
-				Name = "Harry Potter and the Half-Blood Prince",
+				Name = BookNames.TheHalfBloodPrince
 			},
 			new Book
 			{
-				Name = "Harry Potter and the Deathly Hallows – Part 1",
+				Name = BookNames.TheDeathlyHallowsPart1
 			},
 			new Book
 			{
-				Name = "Harry Potter and the Deathly Hallows – Part 2",
+				Name = BookNames.TheDeathlyHallowsPart2
 			}
 		};
 

@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StoreFacadeTests.cs" />
     <Compile Include="TestsFixture\Bootstrapper.cs" />
   </ItemGroup>
   <ItemGroup>
