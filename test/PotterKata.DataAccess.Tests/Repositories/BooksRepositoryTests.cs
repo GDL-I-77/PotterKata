@@ -23,7 +23,7 @@ namespace PotterKata.DataAccess.Tests.Repositories
 			_repository = new BooksRepository(_storage.Object);
 		}
 
-		[TestCaseSource("GetAllTestCases")]
+		[TestCaseSource(typeof(TestCases), "GetAll")]
 		public void GetAll_should_return_data_from_storage_without_any_changes(List<Book> booksFromStorage, List<Book> expectedBooks)
 		{
 			//Arrange
@@ -101,26 +101,6 @@ namespace PotterKata.DataAccess.Tests.Repositories
 
 			//Assert
 			books.Should().Contain(inputBook);
-		}
-
-		internal IEnumerable<TestCaseData> GetAllTestCases()
-		{
-			yield return new TestCaseData(null, null);
-			yield return new TestCaseData(new List<Book>(), new List<Book>());
-			yield return new TestCaseData(
-				new List<Book>
-				{
-					new Book {Name = "1"}, 
-					null,
-					new Book {Name = "2"}
-				},
-				new List<Book>
-				{
-					new Book {Name = "1"},
-					null,
-					new Book {Name = "2"}
-				}
-			);
 		}
 	}
 }

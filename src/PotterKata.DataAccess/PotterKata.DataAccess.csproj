@@ -44,7 +44,9 @@
     <Compile Include="Repositories\BooksRepository.cs" />
     <Compile Include="Repositories\IBooksRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\IWishListRepository.cs" />
     <Compile Include="Repositories\MemoryRepository.cs" />
+    <Compile Include="Repositories\WishListRepository.cs" />
     <Compile Include="Storages\IMemoryStorage.cs" />
     <Compile Include="Storages\MemoryStorage.cs" />
   </ItemGroup>
